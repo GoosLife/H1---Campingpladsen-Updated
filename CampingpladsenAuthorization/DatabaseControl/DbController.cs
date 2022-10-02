@@ -8,17 +8,13 @@ using System.Web;
 namespace CampingpladsenAuthorization
 {
     public enum StoredProcedures {
-        GetAllSpots,
         GetAllSpotsOfType,
         GetSpotModel,
         GetReservedSpots,
         GetFreeSpots,
         GetFreeSpotsOfType,
-        GetAllReservations,
-        GetCurrentReservations,
         GetReservationModel,
         InsertReservation,
-        GetAllSpotTypes,
         AuthorizeUser
     }
 
@@ -59,12 +55,11 @@ namespace CampingpladsenAuthorization
         {
             List<Spot> spots = new List<Spot>();
 
+            string viewAllSpotsQuery = "SELECT * FROM ViewAllSpots";
+
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
-                using (SqlCommand cmd = new SqlCommand(StoredProcedures.GetAllSpots.ToString(), con)
-                {
-                    CommandType = System.Data.CommandType.StoredProcedure
-                })
+                using (SqlCommand cmd = new SqlCommand(viewAllSpotsQuery, con))
                 {
                     con.Open();
 
@@ -264,12 +259,11 @@ namespace CampingpladsenAuthorization
         {
             List<string[]> spotTypes = new List<string[]>();
 
+            string viewAllSpotTypesQuery = "SELECT * FROM ViewAllSpotTypes";
+
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
-                using (SqlCommand cmd = new SqlCommand(StoredProcedures.GetAllSpotTypes.ToString(), con)
-                {
-                    CommandType = System.Data.CommandType.StoredProcedure
-                })
+                using (SqlCommand cmd = new SqlCommand(viewAllSpotTypesQuery, con))
                 {
 
                     con.Open();
@@ -335,12 +329,11 @@ namespace CampingpladsenAuthorization
             Customer c = new Customer();
             Spot s = new Spot();
 
+            string viewAllReservationsQuery = "SELECT * FROM ViewAllReservations";
+
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
-                using (SqlCommand cmd = new SqlCommand(StoredProcedures.GetAllReservations.ToString(), con)
-                {
-                    CommandType = System.Data.CommandType.StoredProcedure
-                })
+                using (SqlCommand cmd = new SqlCommand(viewAllReservationsQuery, con))
                 {
                     con.Open();
 
@@ -365,12 +358,11 @@ namespace CampingpladsenAuthorization
             Customer c = new Customer();
             Spot s = new Spot();
 
+            string viewCurrentReservationsQuery = "SELECT * FROM ViewCurrentReservations";
+
             using (SqlConnection con = new SqlConnection(ConnectionString))
             {
-                using (SqlCommand cmd = new SqlCommand(StoredProcedures.GetCurrentReservations.ToString(), con)
-                {
-                    CommandType = System.Data.CommandType.StoredProcedure
-                })
+                using (SqlCommand cmd = new SqlCommand(viewCurrentReservationsQuery, con))
                 {
                     con.Open();
 

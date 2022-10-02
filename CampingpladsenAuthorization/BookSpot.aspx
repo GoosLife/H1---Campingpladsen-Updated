@@ -3,9 +3,9 @@
     <!-- Demonstration that I can get and display all data from this booking -->
     <asp:DataList ID="datalist_spotToBook" runat="server">
         <ItemTemplate>
-            <%# Eval("spot_name") %>
-            <%# Eval("spot_type") %>
-            <%# Eval("spot_price") %>
+            <p>Plads: <%# Eval("spot_name") %></p>
+            <p>Pladstype: <%# Eval("spot_type") %></p>
+            <p>Pris pr. døgn: <%# Eval("spot_price") %>,-</p>
         </ItemTemplate>
     </asp:DataList>
     Navn:
